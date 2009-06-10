@@ -1,5 +1,5 @@
 NAME
-    Data::TUID -
+    Data::TUID - A smaller and more communicable pseudo-UUID
 
 VERSION
     Version 0.01
