@@ -9,7 +9,11 @@ Data::TUID - A smaller and more communicable pseudo-UUID
 
 =head1 VERSION
 
-Version 0.01
+Version 0.011
+
+=cut
+
+our $VERSION = '0.011';
 
 =head1 SYNOPSIS
 
@@ -19,31 +23,31 @@ Version 0.01
     $tuid = tuid length => 4    # Generate a TUID of length 4
     $tuid = Data::TUID->tuid    # Generate a TUID with the default length
 
-    $tuid = tuid uuid => '1bf4d967-9e4c-4414-9be0-26f31c16fb53' # Generate a TUID based of the give UUID
+    $tuid = tuid uuid => '1bf4d967-9e4c-4414-9be0-26f31c16fb53' # Generate a TUID based off of the given UUID
 
 A sample run (length 4):
 
-rrry
-ggf5
-m1qb
-xczx
-pv9y
+    rrry
+    ggf5
+    m1qb
+    xczx
+    pv9y
 
 A sample run (length 8):
 
-5xcfw8nj
-2q255fyg
-pn3xns4k
-1xcamd3y
-eczzca9c
+    5xcfw8nj
+    2q255fyg
+    pn3xns4k
+    1xcamd3y
+    eczzca9c
 
 A sample run (no length limit):
 
-2kdk8wzjmfapj28cvexj6qndq7
-2tmzr1f3k46tr813dtrxx2vhkqkd
-1x3608c39mb1n726dhmxedjy72d
-pre6tg2dm37zbw9amxg2c8bghn
-3ys0kw21rmtpf54gsmnd28r99pj
+    2kdk8wzjmfapj28cvexj6qndq7
+    2tmzr1f3k46tr813dtrxx2vhkqkd
+    1x3608c39mb1n726dhmxedjy72d
+    pre6tg2dm37zbw9amxg2c8bghn
+    3ys0kw21rmtpf54gsmnd28r99pj
 
 =head1 DESCRIPTION
 
@@ -53,7 +57,7 @@ C<substr>)
 
 Although I've tried to sample the UUID evenly, this technique does not give any guarantee on uniqueness. Caveat emptor.
 
-Finally, the result is more communicable (and smaller) due to the Crockford base 32 encoding. The Crockford technique
+Finally, the result is more communicable (and smaller) due to the Crockford base-32 encoding. The Crockford technique
 uses:
 
     A case-insensitive mapping
@@ -64,11 +68,11 @@ So, given a TUID (say something a user typed in for a URL), you can translate am
 
 =head1 USAGE
 
-=head1 Data::TUID->tuid( ... )
+=head2 Data::TUID->tuid( ... )
 
-=head1 Data::TUID::tuid( ... )
+=head2 Data::TUID::tuid( ... )
 
-=head1 tuid ...
+=head2 tuid ...
 
 The arguments are:
 
@@ -83,9 +87,10 @@ L<Encode::Base32::Crockford>
 
 L<Data::UUID::LibUUID>
 
+L<http://www.crockford.com/wrmg/base32.html>
+
 =cut
 
-our $VERSION = '0.01';
 use vars qw/@ISA @EXPORT/; @ISA = qw/Exporter/; @EXPORT = qw/tuid/;
 
 use Encode::Base32::Crockford qw/base32_encode/;

@@ -2,7 +2,7 @@ NAME
     Data::TUID - A smaller and more communicable pseudo-UUID
 
 VERSION
-    Version 0.01
+    Version 0.011
 
 SYNOPSIS
         use Data::TUID
@@ -11,21 +11,31 @@ SYNOPSIS
         $tuid = tuid length => 4    # Generate a TUID of length 4
         $tuid = Data::TUID->tuid    # Generate a TUID with the default length
 
-        $tuid = tuid uuid => '1bf4d967-9e4c-4414-9be0-26f31c16fb53' # Generate a TUID based of the give UUID
+        $tuid = tuid uuid => '1bf4d967-9e4c-4414-9be0-26f31c16fb53' # Generate a TUID based off of the given UUID
 
     A sample run (length 4):
 
-    rrry ggf5 m1qb xczx pv9y
+        rrry
+        ggf5
+        m1qb
+        xczx
+        pv9y
 
     A sample run (length 8):
 
-    5xcfw8nj 2q255fyg pn3xns4k 1xcamd3y eczzca9c
+        5xcfw8nj
+        2q255fyg
+        pn3xns4k
+        1xcamd3y
+        eczzca9c
 
     A sample run (no length limit):
 
-    2kdk8wzjmfapj28cvexj6qndq7 2tmzr1f3k46tr813dtrxx2vhkqkd
-    1x3608c39mb1n726dhmxedjy72d pre6tg2dm37zbw9amxg2c8bghn
-    3ys0kw21rmtpf54gsmnd28r99pj
+        2kdk8wzjmfapj28cvexj6qndq7
+        2tmzr1f3k46tr813dtrxx2vhkqkd
+        1x3608c39mb1n726dhmxedjy72d
+        pre6tg2dm37zbw9amxg2c8bghn
+        3ys0kw21rmtpf54gsmnd28r99pj
 
 DESCRIPTION
     Data::TUID is a tool for creating small, communicable pseudo-unique
@@ -36,7 +46,7 @@ DESCRIPTION
     give any guarantee on uniqueness. Caveat emptor.
 
     Finally, the result is more communicable (and smaller) due to the
-    Crockford base 32 encoding. The Crockford technique uses:
+    Crockford base-32 encoding. The Crockford technique uses:
 
         A case-insensitive mapping
         1 in place of '1','I', 'i', and 'L'
@@ -47,9 +57,9 @@ DESCRIPTION
     0.
 
 USAGE
-Data::TUID->tuid( ... )
-Data::TUID::tuid( ... )
-tuid ...
+  Data::TUID->tuid( ... )
+  Data::TUID::tuid( ... )
+  tuid ...
     The arguments are:
 
         uuid    The UUID to use as a basis for the TUID. If none is given, one will be generated for you
@@ -61,6 +71,8 @@ SEE ALSO
     Encode::Base32::Crockford
 
     Data::UUID::LibUUID
+
+    <http://www.crockford.com/wrmg/base32.html>
 
 AUTHOR
     Robert Krimen, "<rkrimen at cpan.org>"
