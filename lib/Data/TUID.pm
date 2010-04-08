@@ -109,7 +109,7 @@ sub tuid {
     my $uuid = $given{uuid} || new_uuid_binary;
     $uuid = uuid_to_binary $uuid;
 
-    my @tuid = map { lc base32_encode $_ } unpack 'L*', new_uuid_binary;
+    my @tuid = map { lc base32_encode $_ } unpack 'L*', $uuid;
 
     my $all;
     my $size = $given{size};
