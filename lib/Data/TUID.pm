@@ -94,7 +94,18 @@ L<http://www.crockford.com/wrmg/base32.html>
 use vars qw/@ISA @EXPORT/; @ISA = qw/Exporter/; @EXPORT = qw/tuid/;
 
 use Encode::Base32::Crockford qw/base32_encode/;
-use Data::UUID::LibUUID qw/new_uuid_binary uuid_to_binary/;
+
+_load_dependencies();
+
+sub _load_dependencies {
+    eval {
+        require Data::UUID::LibUUID;
+        Data::UUID::LibUUID->import( qw/new_uuid_binary uuid_to_binary/ );
+        return;
+    };
+    require Data::UUID;
+    return;
+}
 
 sub tuid {
     shift if @_ && $_[0] eq __PACKAGE__;
@@ -106,10 +117,10 @@ sub tuid {
         %given = @_;
     }
 
-    my $uuid = $given{uuid} || new_uuid_binary;
-    $uuid = uuid_to_binary $uuid;
+    my $uuid = $given{uuid} || _new_uuid_binary();
+    $uuid = _uuid_to_binary( $uuid );
 
-    my @tuid = map { lc base32_encode $_ } unpack 'L*', new_uuid_binary;
+    my @tuid = map { lc base32_encode $_ } unpack 'L*', _new_uuid_binary();
 
     my $all;
     my $size = $given{size};
@@ -129,6 +140,22 @@ sub tuid {
     $tuid = substr $tuid, 0, $length if $length;
 
     return $tuid;
+}
+
+sub _new_uuid_binary {
+    eval { return new_uuid_binary() };
+    return Data::UUID->new->create_bin;
+}
+
+sub _uuid_to_binary {
+    my ( $uuid ) = @_;
+
+    eval { return uuid_to_binary( $uuid ) };
+    eval { return Data::UUID->new->from_string( $uuid ); # this will die when given a binary string
+    };
+
+    # so if both of these died, we're likely dealing with a binary uuid and can give it back as it is
+    return $uuid;
 }
 
 =head1 AUTHOR
