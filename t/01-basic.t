@@ -20,4 +20,4 @@ is( length Data::TUID->tuid( 20 ), 20 );
 is( length tuid, 8 );
 is( length tuid( 20 ), 20 );
 
-#warn length tuid( length => -1 ), "\n" for 0 .. 30;
+0 and warn length tuid( length => -1 ), "\n" for 0 .. 30;

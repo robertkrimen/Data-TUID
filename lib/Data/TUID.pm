@@ -94,7 +94,16 @@ L<http://www.crockford.com/wrmg/base32.html>
 use vars qw/@ISA @EXPORT/; @ISA = qw/Exporter/; @EXPORT = qw/tuid/;
 
 use Encode::Base32::Crockford qw/base32_encode/;
-use Data::UUID::LibUUID qw/new_uuid_binary uuid_to_binary/;
+
+use Data::TUID::BestUUID;
+
+sub new_uuid_binary {
+    return Data::TUID::BestUUID->new_uuid_binary( @_ );
+}
+
+sub uuid_to_binary {
+    return Data::TUID::BestUUID->uuid_to_binary( @_ );
+}
 
 sub tuid {
     shift if @_ && $_[0] eq __PACKAGE__;
@@ -107,7 +116,7 @@ sub tuid {
     }
 
     my $uuid = $given{uuid} || new_uuid_binary;
-    $uuid = uuid_to_binary $uuid;
+    $uuid = uuid_to_binary( $uuid );
 
     my @tuid = map { lc base32_encode $_ } unpack 'L*', $uuid;
 

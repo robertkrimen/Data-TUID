@@ -27,8 +27,19 @@ _END_
 
     map { my ($pk, $vr) = split m/\s/; requires $pk => $vr || 0 } grep { ! /^\s*#/ } split m/\n/, <<_END_;
 Encode::Base32::Crockford
-Data::UUID::LibUUID
 _END_
+
+    features(
+        'LibUUID support (for systems where it can be compiled)' => [
+            -default => 1,
+            recommends( 'Data::UUID::LibUUID' => '0' ),
+        ],
+        'fallback Data::UUID support (everywhere else)' => [
+            -default => 0,
+            recommends( 'Data::UUID' => '0' ),
+        ],
+    );
+
 }
 
 if (-e 'inc/.author') {
