@@ -1,0 +1,23 @@
+#!/usr/bin/env perl
+
+use Dzpl
+    name => 'Data-TUID',
+    version => '0.0111_1',
+    author => 'Robert Krimen <robertkrimen@gmail.com>',
+    license => 'Perl5',
+    copyright => 'Robert Krimen',
+
+    require => q/
+        [Test]
+        Test::Most
+
+        Encode::Base32::Crockford
+        Data::UUID
+    /,
+
+    recommend => q/
+        Data::LibUUID
+    /,
+;
+
+{ plugin '@ROKR' }
