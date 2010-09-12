@@ -2,7 +2,7 @@ NAME
     Data::TUID - A smaller and more communicable pseudo-UUID
 
 VERSION
-    version 0.0111_1
+    version 0.0111_2
 
 SYNOPSIS
         use Data::TUID

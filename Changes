@@ -1,3 +1,6 @@
+0.0111_2 Sunday September 12 15:47:19 PDT 2010:
+    - Fix + test for absence of LibUUID causing an exception
+
 0.0111_1 Friday September 10 13:59:04 PDT 2010:
     - Data::TUID uses Data::UUID if Data::LibUUID is not available (thanks wchristian)
     - Should now install and work on non-*nix systems

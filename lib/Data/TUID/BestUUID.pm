@@ -3,24 +3,24 @@ package Data::TUID::BestUUID;
 use strict;
 use warnings;
 
-our %loaded;
+our ( %loaded, %skip );
 
 BEGIN {
     eval {
         $loaded{LibUUID} = require Data::UUID::LibUUID;
         1;
-    };
+    } unless $skip{LibUUID};
 
     eval {
-        $loaded{DataUUID} = require Data::UUID;
+        # $loaded{DataUUID} = require Data::UUID;
         1;
-    };
+    } unless $skip{DataUUID};
 }
 
 sub new_uuid_binary {
     my $self = shift;
 
-    return Data::UUID::LibUUID::new_uuid_binary if $loaded{LibUUID};
+    return &Data::UUID::LibUUID::new_uuid_binary if $loaded{LibUUID};
     return Data::UUID->new->create_bin if $loaded{DataUUID};
 
     die "No UUID package loaded";
@@ -35,7 +35,7 @@ sub uuid_to_binary {
     my $result;
 
     if ( $loaded{LibUUID} ) {
-        $result = Data::UUID::LibUUID::uuid_to_binary( $uuid );
+        $result = &Data::UUID::LibUUID::uuid_to_binary( $uuid );
     }
 
     if ( $loaded{DataUUID} ) {
