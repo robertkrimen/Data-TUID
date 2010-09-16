@@ -2,7 +2,7 @@
 
 use Dzpl
     name => 'Data-TUID',
-    version => '0.0111_2',
+    version => '0.0111_3',
     author => 'Robert Krimen <robertkrimen@gmail.com>',
     license => 'Perl5',
     copyright => 'Robert Krimen',

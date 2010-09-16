@@ -86,12 +86,12 @@ use Encode::Base32::Crockford qw/base32_encode/;
 
 use Data::TUID::BestUUID;
 
-sub new_uuid_binary {
-    return Data::TUID::BestUUID->new_uuid_binary( @_ );
+sub new_uuid {
+    return Data::TUID::BestUUID->new_uuid( @_ );
 }
 
-sub uuid_to_binary {
-    return Data::TUID::BestUUID->uuid_to_binary( @_ );
+sub uuid_to_canonical {
+    return Data::TUID::BestUUID->uuid_to_canonical( @_ );
 }
 
 sub tuid {
@@ -104,10 +104,18 @@ sub tuid {
         %given = @_;
     }
 
-    my $uuid = $given{uuid} || new_uuid_binary;
-    $uuid = uuid_to_binary( $uuid );
+    my $uuid = $given{uuid} || new_uuid;
+    $uuid = uuid_to_canonical( $uuid );
 
-    my @tuid = map { lc base32_encode $_ } unpack 'L*', $uuid;
+    my @tuid;
+    {
+        my $uuid = $uuid;
+        $uuid =~ s/-//g;
+        my @hex = unpack( 'A8 A8 A8 A8', $uuid );
+        my @value = map { hex $_ } @hex;
+        my @base32 = map { base32_encode $_ } @value;
+        @tuid = @base32;
+    }
 
     my $all;
     my $size = $given{size};
