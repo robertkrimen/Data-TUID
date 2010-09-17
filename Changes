@@ -1,4 +1,7 @@
-0.0111_3 Thursday September 16 10:21:03 PDT 2010
+0.0111_4 Thursday September 16 22:41:04 PDT 2010:
+    - Now with prerequisites
+
+0.0111_3 Thursday September 16 10:21:03 PDT 2010:
     - New uuid canonicalizing/conversion scheme
 
 0.0111_2 Sunday September 12 15:47:19 PDT 2010:
