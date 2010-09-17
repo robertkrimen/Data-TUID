@@ -34,5 +34,6 @@ if ( $have{DataUUID} ) {
 
     $result = Data::TUID::BestUUID->uuid_to_canonical( $canonical_uuid );
     is( $canonical_uuid, $result );
+    is( length $result, 36 );
 }
 

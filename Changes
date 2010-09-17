@@ -1,3 +1,6 @@
+0.0111_5 Friday September 17 09:31:53 PDT 2010:
+    - Data::UUID->new->create_str not just ->create
+
 0.0111_4 Thursday September 16 22:41:04 PDT 2010:
     - Now with prerequisites
 

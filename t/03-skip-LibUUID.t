@@ -13,4 +13,7 @@ BEGIN {
 
 use Data::TUID;
 
-ok( 1 );
+my ( $result );
+
+$result = Data::TUID::BestUUID->new_uuid;
+is( length( $result ), 36 );

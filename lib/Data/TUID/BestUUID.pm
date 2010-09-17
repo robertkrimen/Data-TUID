@@ -21,7 +21,7 @@ sub new_uuid {
     my $self = shift;
 
     return &Data::UUID::LibUUID::new_uuid_string if $loaded{LibUUID};
-    return Data::UUID->new->create if $loaded{DataUUID};
+    return Data::UUID->new->create_str if $loaded{DataUUID};
 
     die "No UUID package loaded";
 }
