@@ -2,7 +2,7 @@ NAME
     Data::TUID - A smaller and more communicable pseudo-UUID
 
 VERSION
-    version 0.0111_2
+    version 0.0121
 
 SYNOPSIS
         use Data::TUID
@@ -76,7 +76,7 @@ SEE ALSO
 
 ACKNOWLEDGEMENTS
 AUTHOR
-      Robert Krimen <robertkrimen@gmail.com>
+    Robert Krimen <robertkrimen@gmail.com>
 
 COPYRIGHT AND LICENSE
     This software is copyright (c) 2010 by Robert Krimen.

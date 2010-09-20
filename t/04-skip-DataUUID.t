@@ -5,13 +5,15 @@ use warnings;
 
 use Test::Most;
 
-plan qw/no_plan/;
-
 BEGIN {
     %Data::TUID::BestUUID::skip = ( DataUUID => 1 );
 }
 
 use Data::TUID;
+
+plan skip_all => 'No UUID package available' unless %Data::TUID::BestUUID::loaded;
+
+plan qw/ no_plan /;
 
 my ( $result );
 
